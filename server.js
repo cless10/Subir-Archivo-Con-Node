@@ -26,7 +26,10 @@ var storage = multer.diskStorage({
     filename: function( req, file, callback) {
         //callback(null, file.fieldname + '-' + Date.now());
         //callback(null, file.originalname + '-' + Date.now());     //originalname: trae el nombre completo del archivo conext
-        callback(null, path.basename(file.originalname) + '-' + Date.now() + path.extname(file.originalname));
+        //callback(null, path.basename(file.originalname) + '-' + Date.now() + path.extname(file.originalname));
+        var nombreArchivo = file.originalname;
+        var extension = path.extname(nombreArchivo);
+        callback(null, path.basename(nombreArchivo, extension) + '-' + Date.now() + path.extname(file.originalname));
         
     }
 });
